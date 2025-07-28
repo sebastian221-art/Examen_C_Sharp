@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "torneo", "torneo.csproj", "{397EA39C-D819-97D8-4255-8EBBDDEA4BEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{397EA39C-D819-97D8-4255-8EBBDDEA4BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397EA39C-D819-97D8-4255-8EBBDDEA4BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397EA39C-D819-97D8-4255-8EBBDDEA4BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397EA39C-D819-97D8-4255-8EBBDDEA4BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B0204C0-02C7-43FA-A766-180482DDFB9A}
+	EndGlobalSection
+EndGlobal
