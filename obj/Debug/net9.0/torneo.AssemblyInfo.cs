@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("torneo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1de0fe498d3fbef83b19d171cf2056e2f3db20ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("torneo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("torneo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

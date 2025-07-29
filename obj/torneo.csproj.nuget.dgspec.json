@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/camper/torneo/torneo.csproj": {}
+    "/home/camper/wwwww/torneo.csproj": {}
   },
   "projects": {
-    "/home/camper/torneo/torneo.csproj": {
+    "/home/camper/wwwww/torneo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/camper/torneo/torneo.csproj",
+        "projectUniqueName": "/home/camper/wwwww/torneo.csproj",
         "projectName": "torneo",
-        "projectPath": "/home/camper/torneo/torneo.csproj",
+        "projectPath": "/home/camper/wwwww/torneo.csproj",
         "packagesPath": "/home/camper/.nuget/packages/",
-        "outputPath": "/home/camper/torneo/obj/",
+        "outputPath": "/home/camper/wwwww/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/camper/.nuget/NuGet/NuGet.Config"
