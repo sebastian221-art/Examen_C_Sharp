@@ -1,4 +1,6 @@
-using torneo.Models;
+ using torneo.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace torneo.Repositorio
 {
@@ -17,24 +19,29 @@ namespace torneo.Repositorio
             return Torneos;
         }
 
-        public Torneo BuscarPorId(int id)
+        public Torneo? BuscarPorId(int id)
         {
-            return Torneos.First(t => t.Id == id);
+            return Torneos.FirstOrDefault(t => t.Id == id);
         }
 
         public void Eliminar(int id)
         {
             var torneo = BuscarPorId(id);
-            Torneos.Remove(torneo);
+            if (torneo != null)
+                Torneos.Remove(torneo);
         }
 
         public void Actualizar(int id, Torneo torneoActualizado)
         {
             var torneo = BuscarPorId(id);
-            torneo.Nombre = torneoActualizado.Nombre;
-            torneo.FechaInicio = torneoActualizado.FechaInicio;
-            torneo.FechaFin = torneoActualizado.FechaFin;
+            if (torneo != null)
+            {
+                torneo.Nombre = torneoActualizado.Nombre;
+                torneo.FechaInicio = torneoActualizado.FechaInicio;
+                torneo.FechaFin = torneoActualizado.FechaFin;
+            }
         }
     }
 }
+
 

@@ -13,34 +13,40 @@ class Program
         bool salir = false;
 
         while (!salir)
-        {
-            Console.Clear();
-            Console.WriteLine("=== SISTEMA DE TORNEO ===");
-            Console.WriteLine("1. Gestionar Torneos");
-            Console.WriteLine("2. Gestionar Equipos y Jugadores");
-            Console.WriteLine("3. Salir");
-            Console.Write("Seleccione una opción: ");
+{
+    Console.Clear();
+    Console.WriteLine("=== SISTEMA DE TORNEO ===");
+    Console.WriteLine("1. Gestionar Torneos");
+    Console.WriteLine("2. Menú de Jugadores");
+    Console.WriteLine("3. Menú de Equipos");
+    Console.WriteLine("4. Salir");
+    Console.Write("Seleccione una opción: ");
 
-            string? opcion = Console.ReadLine();
+    string? opcion = Console.ReadLine();
 
-            switch (opcion)
-            {
-                case "1":
-                    GestionarTorneos();
-                    break;
-                case "2":
-                    MenuEquiposJugadores();
-                    break;
-                case "3":
-                    salir = true;
-                    break;
-                default:
-                    Console.WriteLine("Opción no válida. Presione Enter...");
-                    Console.ReadLine();
-                    break;
-            }
-        }
+    switch (opcion)
+    {
+        case "1":
+            GestionarTorneos();
+            break;
+        case "2":
+            MenuJugadores();
+            break;
+        case "3":
+            MenuEquipos();
+            break;
+        case "4":
+            salir = true;
+            break;
+        default:
+            Console.WriteLine("Opción no válida. Presione Enter...");
+            Console.ReadLine();
+            break;
     }
+}
+
+
+
 
     static void GestionarTorneos()
     {
@@ -178,125 +184,284 @@ class Program
         Console.ReadLine();
     }
 
-    static void MenuEquiposJugadores()
+   static void MenuJugadores()
+{
+    bool salir = false;
+    while (!salir)
     {
-        bool salir = false;
+        Console.Clear();
+        Console.WriteLine("=== MENÚ DE JUGADORES ===");
+        Console.WriteLine("1. Registrar Jugador");
+        Console.WriteLine("2. Buscar Jugador");
+        Console.WriteLine("3. Editar Jugador");
+        Console.WriteLine("4. Eliminar Jugador");
+        Console.WriteLine("5. Volver al Menú Principal");
+        Console.Write("Seleccione una opción: ");
+        string? opcion = Console.ReadLine();
 
-        while (!salir)
+        switch (opcion)
+        {
+            case "1":
+                RegistrarJugador();
+                break;
+            case "2":
+                BuscarJugador();
+                break;
+            case "3":
+                EditarJugador();
+                break;
+            case "4":
+                EliminarJugador();
+                break;
+            case "5":
+                salir = true;
+                break;
+            default:
+                Console.WriteLine("Opción no válida. Presione Enter...");
+                Console.ReadLine();
+                break;
+        }
+    }
+}
+
+static void RegistrarJugador()
+{
+    Console.Clear();
+    Console.WriteLine("=== REGISTRAR JUGADOR ===");
+    Console.Write("Nombre: ");
+    string? nombre = Console.ReadLine();
+
+    Console.Write("Edad: ");
+    int edad = int.Parse(Console.ReadLine());
+
+    Console.Write("Posición: ");
+    string? posicion = Console.ReadLine();
+
+    Jugador jugador = new Jugador
+    {
+        Nombre = nombre,
+        Edad = edad,
+        Posicion = posicion
+    };
+
+    jugadorRepo.Agregar(jugador);
+
+    Console.WriteLine("Jugador registrado con éxito.");
+    Console.ReadLine();
+}
+
+static void BuscarJugador()
+{
+    Console.Clear();
+    Console.WriteLine("=== BUSCAR JUGADOR ===");
+    Console.Write("Ingrese el ID del jugador: ");
+    int id = int.Parse(Console.ReadLine());
+
+    var jugador = jugadorRepo.BuscarPorId(id);
+    if (jugador != null)
+    {
+        Console.WriteLine($"ID: {jugador.Id} - Nombre: {jugador.Nombre} - Edad: {jugador.Edad} - Posición: {jugador.Posicion}");
+    }
+    else
+    {
+        Console.WriteLine("Jugador no encontrado.");
+    }
+
+    Console.ReadLine();
+}
+
+static void EditarJugador()
+{
+    Console.Clear();
+    Console.WriteLine("=== EDITAR JUGADOR ===");
+    Console.Write("Ingrese el ID del jugador a editar: ");
+    int id = int.Parse(Console.ReadLine());
+
+    var jugador = jugadorRepo.BuscarPorId(id);
+    if (jugador != null)
+    {
+        Console.Write("Nuevo nombre: ");
+        jugador.Nombre = Console.ReadLine();
+
+        Console.Write("Nueva edad: ");
+        jugador.Edad = int.Parse(Console.ReadLine());
+
+        Console.Write("Nueva posición: ");
+        jugador.Posicion = Console.ReadLine();
+
+        jugadorRepo.Actualizar(id, jugador);
+        Console.WriteLine("Jugador actualizado con éxito.");
+    }
+    else
+    {
+        Console.WriteLine("Jugador no encontrado.");
+    }
+
+    Console.ReadLine();
+}
+
+static void EliminarJugador()
+{
+    Console.Clear();
+    Console.WriteLine("=== ELIMINAR JUGADOR ===");
+    Console.Write("Ingrese el ID del jugador a eliminar: ");
+    int id = int.Parse(Console.ReadLine());
+
+    jugadorRepo.Eliminar(id);
+    Console.WriteLine("Jugador eliminado con éxito.");
+    Console.ReadLine();
+}
+
+static void MenuEquipos()
+{
+    bool salir = false;
+    while (!salir)
+    {
+        Console.Clear();
+        Console.WriteLine("=== MENÚ DE EQUIPOS ===");
+        Console.WriteLine("1. Registrar Equipo");
+        Console.WriteLine("2. Registrar Cuerpo Médico");
+        Console.WriteLine("3. Registrar Cuerpo Técnico");
+        Console.WriteLine("4. Inscripción a Torneo");
+        Console.WriteLine("5. Notificar Transferencia de Jugador");
+        Console.WriteLine("6. Salir del Torneo");
+        Console.WriteLine("7. Volver al Menú Principal");
+        Console.Write("Seleccione una opción: ");
+        string? opcion = Console.ReadLine();
+
+        switch (opcion)
+        {
+            case "1":
+                RegistrarEquipo();
+                break;
+            case "2":
+                RegistrarCuerpoMedico();
+                break;
+            case "3":
+                RegistrarCuerpoTecnico();
+                break;
+            case "4":
+                InscribirEquipoEnTorneo();
+                break;
+            case "5":
+                NotificarTransferencia();
+                break;
+            case "6":
+                SalirDelTorneo();
+                break;
+            case "7":
+                salir = true;
+                break;
+            default:
+                Console.WriteLine("Opción no válida. Presione Enter...");
+                Console.ReadLine();
+                break;
+        }
+    }
+}
+
+
+        static void RegistrarEquipo()
         {
             Console.Clear();
-            Console.WriteLine("=== SISTEMA DE TORNEO ===");
-            Console.WriteLine("1. Registrar Equipo");
-            Console.WriteLine("2. Registrar Jugador");
-            Console.WriteLine("3. Ver Equipos");
-            Console.WriteLine("4. Ver Jugadores");
-            Console.WriteLine("5. Volver al Menú Principal");
-            Console.Write("Seleccione una opción: ");
+            Console.WriteLine("=== REGISTRAR EQUIPO ===");
+            Console.Write("Nombre del equipo: ");
+            string? nombre = Console.ReadLine();
 
-            string? opcion = Console.ReadLine();
+            Equipo equipo = new Equipo { Nombre = nombre };
+            equipoRepo.Agregar(equipo);
 
-            switch (opcion)
-            {
-                case "1":
-                    RegistrarEquipo();
-                    break;
-                case "2":
-                    RegistrarJugador();
-                    break;
-                case "3":
-                    VerEquipos();
-                    break;
-                case "4":
-                    VerJugadores();
-                    break;
-                case "5":
-                    salir = true;
-                    break;
-                default:
-                    Console.WriteLine("Opción no válida. Presione Enter...");
-                    Console.ReadLine();
-                    break;
-            }
+            Console.WriteLine("Equipo registrado con éxito.");
+            Console.ReadLine();
         }
-    }
-    static void RegistrarEquipo()
+
+static void RegistrarCuerpoMedico()
+{
+    Console.Clear();
+    Console.WriteLine("=== REGISTRAR CUERPO MÉDICO ===");
+    Console.Write("Nombre: ");
+    string? nombre = Console.ReadLine();
+
+    Console.Write("Especialidad: ");
+    string? especialidad = Console.ReadLine();
+
+    CuerpoMedico medico = new CuerpoMedico
     {
-        Console.Clear();
-        Console.WriteLine("=== REGISTRAR EQUIPO ===");
-        Console.Write("Nombre del equipo: ");
-        string? nombre = Console.ReadLine();
+        Nombre = nombre,
+        Especialidad = especialidad
+    };
 
-        Equipo equipo = new Equipo { Nombre = nombre };
-        equipoRepo.Agregar(equipo);
 
-        Console.WriteLine(" Equipo registrado con éxito.");
-        Console.ReadLine();
-    }
+    Console.WriteLine("Cuerpo médico registrado con éxito.");
+    Console.ReadLine();
+}
 
-    static void RegistrarJugador()
+static void RegistrarCuerpoTecnico()
+{
+    Console.Clear();
+    Console.WriteLine("=== REGISTRAR CUERPO TÉCNICO ===");
+    Console.Write("Nombre: ");
+    string? nombre = Console.ReadLine();
+
+    Console.Write("Rol (Ej: Director Técnico): ");
+    string? rol = Console.ReadLine();
+
+    CuerpoTecnico tecnico = new CuerpoTecnico
     {
-        Console.Clear();
-        Console.WriteLine("=== REGISTRAR JUGADOR ===");
-        Console.Write("Nombre: ");
-        string? nombre = Console.ReadLine();
+        Nombre = nombre,
+        Rol = rol
+    };
 
-        Console.Write("Edad: ");
-        int edad = int.Parse(Console.ReadLine());
+    Console.WriteLine("Cuerpo técnico registrado con éxito.");
+    Console.ReadLine();
+}
 
-        Console.Write("Posición: ");
-        string? posicion = Console.ReadLine();
+static void InscribirEquipoEnTorneo()
+{
+    Console.Clear();
+    Console.WriteLine("=== INSCRIPCIÓN A TORNEO ===");
 
-        Jugador jugador = new Jugador
+    Console.Write("ID del equipo: ");
+    int idEquipo = int.Parse(Console.ReadLine());
+
+    Console.Write("ID del torneo: ");
+    int idTorneo = int.Parse(Console.ReadLine());
+
+
+    Console.WriteLine($"Equipo {idEquipo} inscrito en el torneo {idTorneo} con éxito.");
+    Console.ReadLine();
+}
+
+static void NotificarTransferencia()
+{
+    Console.Clear();
+    Console.WriteLine("=== NOTIFICACIÓN DE TRANSFERENCIA DE JUGADOR ===");
+
+    Console.Write("ID del jugador transferido: ");
+    int idJugador = int.Parse(Console.ReadLine());
+
+    Console.Write("Nuevo equipo destino: ");
+    string? nuevoEquipo = Console.ReadLine();
+
+
+    Console.WriteLine($"Transferencia del jugador {idJugador} al equipo '{nuevoEquipo}' notificada con éxito.");
+    Console.ReadLine();
+}
+
+static void SalirDelTorneo()
         {
-            Nombre = nombre,
-            Edad = edad,
-            Posicion = posicion
-        };
+            Console.Clear();
+            Console.WriteLine("=== SALIDA DE EQUIPO DE TORNEO ===");
 
-        jugadorRepo.Agregar(jugador);
+            Console.Write("ID del equipo: ");
+            int idEquipo = int.Parse(Console.ReadLine());
 
-        Console.WriteLine(" Jugador registrado con éxito.");
-        Console.ReadLine();
-    }
-    static void VerEquipos()
-    {
-        Console.Clear();
-        Console.WriteLine("=== LISTA DE EQUIPOS ===");
+            Console.Write("ID del torneo: ");
+            int idTorneo = int.Parse(Console.ReadLine());
 
-        var equipos = equipoRepo.ObtenerTodos();
-        if (equipos.Count == 0)
-        {
-            Console.WriteLine("No hay equipos registrados.");
+
+            Console.WriteLine($"El equipo {idEquipo} ha sido retirado del torneo {idTorneo}.");
+            Console.ReadLine();
         }
-        else
-        {
-            foreach (var equipo in equipos)
-            {
-                Console.WriteLine($"ID: {equipo.Id} - Nombre: {equipo.Nombre}");
-            }
-        }
-
-        Console.ReadLine();
-    }
-
-    static void VerJugadores()
-    {
-        Console.Clear();
-        Console.WriteLine("=== LISTA DE JUGADORES ===");
-
-        var jugadores = jugadorRepo.ObtenerTodos();
-        if (jugadores.Count == 0)
-        {
-            Console.WriteLine("No hay jugadores registrados.");
-        }
-        else
-        {
-            foreach (var jugador in jugadores)
-            {
-                Console.WriteLine($"ID: {jugador.Id} - {jugador.Nombre} - Edad: {jugador.Edad} - Posición: {jugador.Posicion}");
-            }
-        }
-
-        Console.ReadLine();
     }
 }

@@ -1,27 +1,45 @@
-using System.Collections.Generic;
 using torneo.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace torneo.Repositorio
 {
     public class JugadorRepositorio
     {
-        public List<Jugador> Jugadores = new List<Jugador>();
+        private List<Jugador> jugadores = new List<Jugador>();
 
         public void Agregar(Jugador jugador)
         {
-            jugador.Id = Jugadores.Count + 1;
-            Jugadores.Add(jugador);
+            jugador.Id = jugadores.Count + 1;
+            jugadores.Add(jugador);
         }
 
         public List<Jugador> ObtenerTodos()
         {
-            return Jugadores;
+            return jugadores;
         }
 
-        public Jugador BuscarPorId(int id)
+        public Jugador? BuscarPorId(int id)
         {
-            return Jugadores.First(j => j.Id == id);
+            return jugadores.FirstOrDefault(j => j.Id == id);
+        }
+
+        public void Actualizar(int id, Jugador jugadorActualizado)
+        {
+            var jugador = BuscarPorId(id);
+            if (jugador != null)
+            {
+                jugador.Nombre = jugadorActualizado.Nombre;
+                jugador.Edad = jugadorActualizado.Edad;
+                jugador.Posicion = jugadorActualizado.Posicion;
+            }
+        }
+
+        public void Eliminar(int id)
+        {
+            var jugador = BuscarPorId(id);
+            if (jugador != null)
+                jugadores.Remove(jugador);
         }
     }
 }

@@ -1,0 +1,15 @@
+/home/camper/wwwww/bin/Debug/net9.0/torneo
+/home/camper/wwwww/bin/Debug/net9.0/torneo.deps.json
+/home/camper/wwwww/bin/Debug/net9.0/torneo.runtimeconfig.json
+/home/camper/wwwww/bin/Debug/net9.0/torneo.dll
+/home/camper/wwwww/bin/Debug/net9.0/torneo.pdb
+/home/camper/wwwww/obj/Debug/net9.0/torneo.GeneratedMSBuildEditorConfig.editorconfig
+/home/camper/wwwww/obj/Debug/net9.0/torneo.AssemblyInfoInputs.cache
+/home/camper/wwwww/obj/Debug/net9.0/torneo.AssemblyInfo.cs
+/home/camper/wwwww/obj/Debug/net9.0/torneo.csproj.CoreCompileInputs.cache
+/home/camper/wwwww/obj/Debug/net9.0/torneo.sourcelink.json
+/home/camper/wwwww/obj/Debug/net9.0/torneo.dll
+/home/camper/wwwww/obj/Debug/net9.0/refint/torneo.dll
+/home/camper/wwwww/obj/Debug/net9.0/torneo.pdb
+/home/camper/wwwww/obj/Debug/net9.0/torneo.genruntimeconfig.cache
+/home/camper/wwwww/obj/Debug/net9.0/ref/torneo.dll
