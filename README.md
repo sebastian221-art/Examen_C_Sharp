@@ -1,4 +1,4 @@
-# ⚽ DataLeaguePro - Sistema de Gestión de Torneos
+# 🏆 LeagueMaster - Sistema de Gestión de Torneos
 
 **DataLeaguePro** es un sistema de base de datos relacional diseñado para gestionar torneos de fútbol, equipos, jugadores, transferencias, cuerpos técnicos y médicos.  
 Está implementado en **MySQL** y preparado para ser utilizado con **.NET + Entity Framework Core**.
