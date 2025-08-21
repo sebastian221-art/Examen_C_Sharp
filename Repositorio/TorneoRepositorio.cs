@@ -1,47 +1,98 @@
- using torneo.Models;
-using System.Collections.Generic;
-using System.Linq;
+using torneo.Data;
+using torneo.Models;
+using MySql.Data.MySqlClient;
 
 namespace torneo.Repositorio
 {
     public class TorneoRepositorio
     {
-        private List<Torneo> Torneos = new List<Torneo>();
-
         public void Agregar(Torneo torneo)
         {
-            torneo.Id = Torneos.Count + 1;
-            Torneos.Add(torneo);
+            using var connection = DbConnectionFactory.GetConnection();
+            connection.Open();
+
+            string query = "INSERT INTO Torneo (Nombre, FechaInicio, FechaFin) VALUES (@Nombre, @FechaInicio, @FechaFin)";
+            using var cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@Nombre", torneo.Nombre);
+            cmd.Parameters.AddWithValue("@FechaInicio", torneo.FechaInicio);
+            cmd.Parameters.AddWithValue("@FechaFin", torneo.FechaFin);
+
+            cmd.ExecuteNonQuery();
         }
 
         public List<Torneo> ObtenerTodos()
         {
-            return Torneos;
+            List<Torneo> torneos = new();
+
+            using var connection = DbConnectionFactory.GetConnection();
+            connection.Open();
+
+            string query = "SELECT Id, Nombre, FechaInicio, FechaFin FROM Torneo";
+            using var cmd = new MySqlCommand(query, connection);
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                torneos.Add(new Torneo
+                {
+                    Id = reader.GetInt32("Id"),
+                    Nombre = reader.GetString("Nombre"),
+                    FechaInicio = reader.GetDateTime("FechaInicio"),
+                    FechaFin = reader.GetDateTime("FechaFin")
+                });
+            }
+
+            return torneos;
         }
 
         public Torneo? BuscarPorId(int id)
         {
-            return Torneos.FirstOrDefault(t => t.Id == id);
+            using var connection = DbConnectionFactory.GetConnection();
+            connection.Open();
+
+            string query = "SELECT Id, Nombre, FechaInicio, FechaFin FROM Torneo WHERE Id=@Id";
+            using var cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Torneo
+                {
+                    Id = reader.GetInt32("Id"),
+                    Nombre = reader.GetString("Nombre"),
+                    FechaInicio = reader.GetDateTime("FechaInicio"),
+                    FechaFin = reader.GetDateTime("FechaFin")
+                };
+            }
+
+            return null;
+        }
+
+        public void Actualizar(Torneo torneo)
+        {
+            using var connection = DbConnectionFactory.GetConnection();
+            connection.Open();
+
+            string query = "UPDATE Torneo SET Nombre=@Nombre, FechaInicio=@FechaInicio, FechaFin=@FechaFin WHERE Id=@Id";
+            using var cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@Id", torneo.Id);
+            cmd.Parameters.AddWithValue("@Nombre", torneo.Nombre);
+            cmd.Parameters.AddWithValue("@FechaInicio", torneo.FechaInicio);
+            cmd.Parameters.AddWithValue("@FechaFin", torneo.FechaFin);
+
+            cmd.ExecuteNonQuery();
         }
 
         public void Eliminar(int id)
         {
-            var torneo = BuscarPorId(id);
-            if (torneo != null)
-                Torneos.Remove(torneo);
-        }
+            using var connection = DbConnectionFactory.GetConnection();
+            connection.Open();
 
-        public void Actualizar(int id, Torneo torneoActualizado)
-        {
-            var torneo = BuscarPorId(id);
-            if (torneo != null)
-            {
-                torneo.Nombre = torneoActualizado.Nombre;
-                torneo.FechaInicio = torneoActualizado.FechaInicio;
-                torneo.FechaFin = torneoActualizado.FechaFin;
-            }
+            string query = "DELETE FROM Torneo WHERE Id=@Id";
+            using var cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@Id", id);
+            cmd.ExecuteNonQuery();
         }
     }
 }
-
-

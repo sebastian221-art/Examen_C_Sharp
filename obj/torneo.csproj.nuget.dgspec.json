@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/camper/wwwww/torneo.csproj": {}
+    "C:\\Users\\Sebas\\wwwww\\torneo.csproj": {}
   },
   "projects": {
-    "/home/camper/wwwww/torneo.csproj": {
+    "C:\\Users\\Sebas\\wwwww\\torneo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/camper/wwwww/torneo.csproj",
+        "projectUniqueName": "C:\\Users\\Sebas\\wwwww\\torneo.csproj",
         "projectName": "torneo",
-        "projectPath": "/home/camper/wwwww/torneo.csproj",
-        "packagesPath": "/home/camper/.nuget/packages/",
-        "outputPath": "/home/camper/wwwww/obj/",
+        "projectPath": "C:\\Users\\Sebas\\wwwww\\torneo.csproj",
+        "packagesPath": "C:\\Users\\Sebas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sebas\\wwwww\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/camper/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Sebas\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,11 +38,43 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.4.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[9.0.0-rc.1.efcore.9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -59,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
