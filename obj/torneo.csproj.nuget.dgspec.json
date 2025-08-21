@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sebas\\wwwww\\torneo.csproj": {}
+    "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sebas\\wwwww\\torneo.csproj": {
+    "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sebas\\wwwww\\torneo.csproj",
+        "projectUniqueName": "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj",
         "projectName": "torneo",
-        "projectPath": "C:\\Users\\Sebas\\wwwww\\torneo.csproj",
+        "projectPath": "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj",
         "packagesPath": "C:\\Users\\Sebas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sebas\\wwwww\\obj\\",
+        "outputPath": "C:\\Users\\Sebas\\Examen_C_Sharp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sebas\\AppData\\Roaming\\NuGet\\NuGet.Config"

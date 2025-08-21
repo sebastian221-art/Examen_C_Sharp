@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yPCGBIHstzQ=",
+  "dgSpecHash": "JtVDQrbX4tI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sebas\\wwwww\\torneo.csproj",
+  "projectFilePath": "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sebas\\.nuget\\packages\\bouncycastle.cryptography\\2.5.1\\bouncycastle.cryptography.2.5.1.nupkg.sha512",
     "C:\\Users\\Sebas\\.nuget\\packages\\google.protobuf\\3.30.0\\google.protobuf.3.30.0.nupkg.sha512",
