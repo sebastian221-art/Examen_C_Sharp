@@ -1,37 +1,38 @@
+
 # 🏆 LeagueMaster - Sistema de Gestión de Torneos
 
-**DataLeaguePro** es un sistema de base de datos relacional diseñado para gestionar torneos de fútbol, equipos, jugadores, transferencias, cuerpos técnicos y médicos.  
-Está implementado en **MySQL** y preparado para ser utilizado con **.NET + Entity Framework Core**.
+**LeagueMaster** es un sistema completo de gestión de torneos de fútbol.  
+Está diseñado con **MySQL** como base de datos relacional y preparado para integrarse con **.NET + Entity Framework Core**.
 
 ---
 
 ## 📂 Estructura del Proyecto
 
-El sistema cuenta con las siguientes entidades principales:
+El sistema maneja las siguientes entidades principales:
 
-- **Equipo** 🏟️: Representa a cada club participante (nombre, goles en contra).  
-- **Jugador** 👟: Información detallada de los futbolistas (edad, posición, dorsal, asistencias, valor de mercado).  
-- **Torneo** 🏆: Torneos nacionales e internacionales (nombre, fecha de inicio y fin).  
-- **Equipo_Torneo** 🔗: Relación entre equipos y torneos.  
-- **Cuerpo Técnico** 🎓: Entrenadores, asistentes y otros roles del staff.  
-- **Cuerpo Médico** 🏥: Especialistas médicos vinculados a los equipos.  
-- **Transferencia** 💸: Historial de transferencias de jugadores entre clubes.  
+- **Equipo 🏟️**: Clubes participantes en los torneos.
+- **Jugador 👟**: Información de jugadores (edad, posición, dorsal, asistencias, valor de mercado).
+- **Torneo 🏆**: Torneos nacionales e internacionales con fechas de inicio y fin.
+- **Equipo_Torneo 🔗**: Relación entre equipos y torneos.
+- **Cuerpo Técnico 🎓**: Entrenadores, asistentes y staff.
+- **Cuerpo Médico 🏥**: Especialistas médicos de los equipos.
+- **Transferencia 💸**: Historial de transferencias de jugadores entre equipos.
 
 ---
 
 ## 🛠️ Creación de la Base de Datos
 
 ```sql
-DROP DATABASE IF EXISTS TorneoDB;
-CREATE DATABASE TorneoDB;
-USE TorneoDB;
+DROP DATABASE IF EXISTS LeagueMasterDB;
+CREATE DATABASE LeagueMasterDB;
+USE LeagueMasterDB;
 ```
 
 ---
 
-## 📊 Tablas y Relaciones
+## 📊 Definición de Tablas
 
-### Tabla: **Equipo**
+### Tabla: Equipo
 ```sql
 CREATE TABLE Equipo (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -40,7 +41,7 @@ CREATE TABLE Equipo (
 );
 ```
 
-### Tabla: **Jugador**
+### Tabla: Jugador
 ```sql
 CREATE TABLE Jugador (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,7 +56,7 @@ CREATE TABLE Jugador (
 );
 ```
 
-### Tabla: **Torneo**
+### Tabla: Torneo
 ```sql
 CREATE TABLE Torneo (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -65,7 +66,7 @@ CREATE TABLE Torneo (
 );
 ```
 
-### Tabla: **Equipo_Torneo**
+### Tabla: Equipo_Torneo
 ```sql
 CREATE TABLE Equipo_Torneo (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -76,7 +77,7 @@ CREATE TABLE Equipo_Torneo (
 );
 ```
 
-### Tabla: **Cuerpo Técnico**
+### Tabla: Cuerpo Técnico
 ```sql
 CREATE TABLE CuerpoTecnico (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -89,7 +90,7 @@ CREATE TABLE CuerpoTecnico (
 );
 ```
 
-### Tabla: **Cuerpo Médico**
+### Tabla: Cuerpo Médico
 ```sql
 CREATE TABLE CuerpoMedico (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -102,7 +103,7 @@ CREATE TABLE CuerpoMedico (
 );
 ```
 
-### Tabla: **Transferencia**
+### Tabla: Transferencia
 ```sql
 CREATE TABLE Transferencia (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -119,14 +120,42 @@ CREATE TABLE Transferencia (
 
 ---
 
-## 📥 Datos de Ejemplo (Inserts)
+## 📊 Estadísticas y Consultas
 
-Incluye algunos equipos, jugadores, torneos y staff técnico/médico:
+```sql
+-- Máximos goleadores (ordenar por asistencias como ejemplo)
+SELECT Nombre, Asistencias FROM Jugador ORDER BY Asistencias DESC LIMIT 5;
+
+-- Jugadores más valiosos
+SELECT Nombre, ValorMercado FROM Jugador ORDER BY ValorMercado DESC LIMIT 5;
+
+-- Promedio de edad por equipo
+SELECT e.Nombre, AVG(j.Edad) AS PromedioEdad
+FROM Jugador j
+JOIN Equipo e ON j.EquipoId = e.Id
+GROUP BY e.Nombre;
+
+-- Valor total de mercado por equipo
+SELECT e.Nombre, SUM(j.ValorMercado) AS ValorEquipo
+FROM Jugador j
+JOIN Equipo e ON j.EquipoId = e.Id
+GROUP BY e.Nombre;
+
+-- Equipos con más jugadores
+SELECT e.Nombre, COUNT(j.Id) AS CantidadJugadores
+FROM Jugador j
+JOIN Equipo e ON j.EquipoId = e.Id
+GROUP BY e.Nombre
+ORDER BY CantidadJugadores DESC;
+```
+
+---
+
+## 📥 Datos de Ejemplo (Inserts)
 
 ```sql
 -- Equipos
-INSERT INTO Equipo (Nombre, GolesContra)
-VALUES 
+INSERT INTO Equipo (Nombre, GolesContra) VALUES
 ('Barcelona', 10),
 ('Real Madrid', 8),
 ('Manchester City', 5),
@@ -134,8 +163,7 @@ VALUES
 ('Al Nassr', 15);
 
 -- Jugadores
-INSERT INTO Jugador (Nombre, Edad, Posicion, Dorsal, Asistencias, ValorMercado, EquipoId)
-VALUES
+INSERT INTO Jugador (Nombre, Edad, Posicion, Dorsal, Asistencias, ValorMercado, EquipoId) VALUES
 ('Lionel Messi', 36, 'Delantero', 10, 15, 50000000, 1),
 ('Karim Benzema', 35, 'Delantero', 9, 10, 25000000, 2),
 ('Kevin De Bruyne', 32, 'Mediocampista', 17, 20, 70000000, 3),
@@ -145,34 +173,31 @@ VALUES
 ('Cristiano Ronaldo', 39, 'Delantero', 7, 12, 20000000, 5);
 
 -- Torneos
-INSERT INTO Torneo (Nombre, FechaInicio, FechaFin)
-VALUES
+INSERT INTO Torneo (Nombre, FechaInicio, FechaFin) VALUES
 ('Champions League', '2025-02-15', '2025-06-01'),
 ('Copa Libertadores', '2025-03-10', '2025-07-30');
 
 -- Relación Equipo-Torneo
-INSERT INTO Equipo_Torneo (EquipoId, TorneoId)
-VALUES
+INSERT INTO Equipo_Torneo (EquipoId, TorneoId) VALUES
 (1, 1), (2, 1), (3, 1), (4, 2), (5, 1);
 
 -- Cuerpo Técnico
-INSERT INTO CuerpoTecnico (Nombre, Email, Descripcion, Rol, EquipoId)
-VALUES
+INSERT INTO CuerpoTecnico (Nombre, Email, Descripcion, Rol, EquipoId) VALUES
 ('Pep Guardiola', 'pep@city.com', 'Estratega de posesión', 'Director Técnico', 3),
 ('Carlo Ancelotti', 'carlo@realmadrid.com', 'Manejador de vestuario', 'Director Técnico', 2);
 
 -- Cuerpo Médico
-INSERT INTO CuerpoMedico (Nombre, Email, Descripcion, Especialidad, EquipoId)
-VALUES
+INSERT INTO CuerpoMedico (Nombre, Email, Descripcion, Especialidad, EquipoId) VALUES
 ('Dr. Smith', 'drsmith@barcelona.com', 'Experto en lesiones musculares', 'Fisioterapeuta', 1),
 ('Dr. Pérez', 'drperez@boca.com', 'Especialista en rodilla', 'Traumatólogo', 4);
 ```
 
 ---
 
+
 ## 🚀 Configuración con .NET y EF Core
 
-Este proyecto está preparado para trabajar con **Entity Framework Core** y **MySQL**.  
+Este proyecto está preparado para trabajar con Entity Framework Core y MySQL.  
 Instala los siguientes paquetes NuGet:
 
 ```bash
@@ -189,9 +214,6 @@ dotnet add package MySql.Data
 
 ## 📌 Requisitos
 
-- **MySQL 8.0+**
-- **.NET 7 o superior**
-- **Entity Framework Core 9**
-
----
-
+- MySQL 8.0+
+- .NET 7 o superior
+- Entity Framework Core 9
