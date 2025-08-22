@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj": {}
+    "/home/camper/Examen_C_Sharp/torneo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj": {
+    "/home/camper/Examen_C_Sharp/torneo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj",
+        "projectUniqueName": "/home/camper/Examen_C_Sharp/torneo.csproj",
         "projectName": "torneo",
-        "projectPath": "C:\\Users\\Sebas\\Examen_C_Sharp\\torneo.csproj",
-        "packagesPath": "C:\\Users\\Sebas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sebas\\Examen_C_Sharp\\obj\\",
+        "projectPath": "/home/camper/Examen_C_Sharp/torneo.csproj",
+        "packagesPath": "/home/camper/.nuget/packages/",
+        "outputPath": "/home/camper/Examen_C_Sharp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Sebas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/camper/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -91,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

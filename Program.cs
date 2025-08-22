@@ -621,21 +621,74 @@ class Program
         Pause();
     }
 
-    static void NotificarTransferencia()
+static void NotificarTransferencia()
+{
+    Console.Clear();
+    Console.WriteLine("=== HISTORIAL DE TRANSFERENCIAS ===");
+
+    var transferenciaRepo = new TransferenciaRepositorio();
+    var historial = transferenciaRepo.ObtenerHistorial();
+
+    if (!historial.Any())
     {
-        Console.Clear();
-        Console.WriteLine("=== NOTIFICACIÓN DE TRANSFERENCIA DE JUGADOR ===");
-
-        int idJugador = SeleccionarJugador();
-        if (idJugador == -1) return;
-
-        int idEquipoDestino = SeleccionarEquipo();
-        if (idEquipoDestino == -1) return;
-
-        Console.WriteLine($"✅ Transferencia notificada: jugador {idJugador} -> equipo {idEquipoDestino}.");
-        Pause();
+        Console.WriteLine("No se han registrado transferencias aún.");
+    }
+    else
+    {
+        foreach (var t in historial)
+        {
+            Console.WriteLine($"{t.FechaTransferencia:dd/MM/yyyy} | {t.NombreJugador} -> {t.NombreEquipoDestino} | Precio: ${t.Precio:N0}");
+        }
     }
 
+    Console.WriteLine("\n=== NUEVA TRANSFERENCIA ===");
+
+    var jugadorRepo = new JugadorRepositorio();
+    var equipoRepo = new EquipoRepositorio();
+
+    int idJugador = SeleccionarJugador();
+    if (idJugador == -1) return;
+
+    var jugador = jugadorRepo.BuscarPorId(idJugador);
+    if (jugador == null)
+    {
+        Console.WriteLine("Jugador no encontrado.");
+        Pause();
+        return;
+    }
+
+    int idEquipoDestino = SeleccionarEquipo();
+    if (idEquipoDestino == -1) return;
+
+    var equipoDestino = equipoRepo.BuscarPorId(idEquipoDestino);
+    if (equipoDestino == null)
+    {
+        Console.WriteLine("Equipo no encontrado.");
+        Pause();
+        return;
+    }
+
+    Console.Write("Ingrese el precio de la transferencia: ");
+    decimal precio = decimal.TryParse(Console.ReadLine(), out decimal p) ? p : 0;
+
+    // Guardar transferencia en base de datos
+    var transferencia = new Transferencia
+    {
+        JugadorId = jugador.Id,
+        EquipoOrigenId = jugador.EquipoId,
+        EquipoDestinoId = idEquipoDestino,
+        Precio = precio,
+        FechaTransferencia = DateTime.Now
+    };
+
+    // Actualizar equipo del jugador
+    jugadorRepo.TransferirJugador(jugador.Id, idEquipoDestino);
+
+    transferenciaRepo.RegistrarTransferencia(transferencia);
+
+    Console.WriteLine($"✅ Transferencia completada: {jugador.Nombre} -> {equipoDestino.Nombre} por ${precio:N0}");
+    Pause();
+}
     static void SalirDelTorneo()
     {
         Console.Clear();

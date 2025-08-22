@@ -6,7 +6,7 @@ namespace torneo.Data
     {
         // 📌 Ajusta los datos de conexión según tu MySQL
         private static readonly string connectionString = 
-            "Server=localhost;Database=LeagueMasterDB;User ID=root;Password=sebastian22;";
+            "Server=localhost;Database=LeagueMasterDB;User=campus2023;Password=campus2023;";
 
         /// <summary>
         /// Crea y devuelve una conexión a MySQL.
